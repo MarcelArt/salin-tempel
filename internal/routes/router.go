@@ -9,6 +9,7 @@ func SetupRoutes(app *fiber.App) {
 	clipboard := app.Group("/clipboard")
 	clipboard.Post("/", handlers.Copy)
 	clipboard.Post("/img", handlers.CopyPicture)
+	clipboard.Post("/open", handlers.OpenLink)
 
 	qr := app.Group("/qr")
 	qr.Get("/", handlers.QRCode)

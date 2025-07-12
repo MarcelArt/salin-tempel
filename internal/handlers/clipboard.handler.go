@@ -6,6 +6,7 @@ import (
 
 	"github.com/MarcelArt/salin-tempel/internal/models"
 	"github.com/gofiber/fiber/v2"
+	"github.com/skratchdot/open-golang/open"
 	"golang.design/x/clipboard"
 )
 
@@ -62,4 +63,26 @@ func CopyPicture(c *fiber.Ctx) error {
 
 	clipboard.Write(clipboard.FmtImage, fileContent)
 	return c.SendStatus(fiber.StatusCreated)
+}
+
+// Open link in a browser
+// @Summary Open link in a browser
+// @Description Open link in a browser
+// @Tags Clipboard
+// @Accept json
+// @Produce json
+// @Param Clipboard body models.CopyString true "Link"
+// @Success 204 {object} string
+// @Failure 400 {object} string
+// @Router /clipboard/open [post]
+func OpenLink(c *fiber.Ctx) error {
+	var link models.CopyString
+	if err := c.BodyParser(&link); err != nil {
+		err = fmt.Errorf("invalid json: %w", err)
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	open.Run(link.Text)
+
+	return c.SendStatus(fiber.StatusNoContent)
 }
