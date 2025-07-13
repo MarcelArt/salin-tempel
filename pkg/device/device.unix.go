@@ -24,6 +24,7 @@ func GetDeviceInfo() (Device, error) {
 		User:    current.Name,
 		OS:      si.OS.Name,
 		Product: si.Product.Name,
+		Type:    "unix",
 	}
 	return device, nil
 }

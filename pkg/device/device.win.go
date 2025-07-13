@@ -19,6 +19,7 @@ func GetDeviceInfo() (Device, error) {
 		User:    current.Name,
 		OS:      "Windows",
 		Product: "Unknown",
+		Type:    "win",
 	}
 	return device, nil
 }
