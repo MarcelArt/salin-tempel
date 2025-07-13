@@ -1,16 +1,13 @@
 package server
 
 import (
+	"github.com/MarcelArt/salin-tempel/internal/handlers"
 	"github.com/MarcelArt/salin-tempel/internal/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/swagger"
 )
-
-func helloWorld(c *fiber.Ctx) error {
-	return c.SendString("Hello, World!")
-}
 
 func Run() {
 	app := fiber.New()
@@ -23,7 +20,7 @@ func Run() {
 	app.Use(cors.New())
 	app.Use(logger.New())
 
-	app.Get("/", helloWorld)
+	app.Get("/", handlers.GetDevice)
 
 	routes.SetupRoutes(app)
 
