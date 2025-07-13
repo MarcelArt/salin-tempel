@@ -31,7 +31,7 @@ func getLocalIP() string {
 func QRCode(c *fiber.Ctx) error {
 	ip := getLocalIP()
 
-	url := fmt.Sprintf("%s://%s:3000", c.Protocol(), ip)
+	url := fmt.Sprintf("%s://%s:3001", c.Protocol(), ip)
 	log.Println(url)
 
 	var png []byte
