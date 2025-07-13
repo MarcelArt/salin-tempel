@@ -7,5 +7,12 @@ dev:
 swag:
 	@swag init --parseDependency --parseInternal
 
+build-win:
+	@GOOS=windows GOARCH=amd64 go build -o bin/papan-klip.exe main.go
+
+build-linux:
+	@GOOS=linux GOARCH=amd64 go build -o bin/papan-klip main.go
+
 build:
-	@go build -o bin/papan-klip main.go
+	@make build-linux
+	@make build-win
