@@ -10,5 +10,5 @@ func onQuitClicked() {
 }
 
 func onQRCodeClicked() {
-	open.Run("http://localhost:3000/qr")
+	open.Run("http://localhost:3001/qr")
 }
